@@ -1,0 +1,44 @@
+START
+
+GET first number from user
+  Save number to variable 
+  convert number to integer
+GET second number from user
+  Save number to variable
+  convert number to integer
+
+SET variable to store result
+Add integer1 + interget2 and save to result variable
+PRINT result variable
+
+END
+
+
+START
+
+# Given a collection of strings called "strings"
+
+SET itirator = 1
+SET variable to hold new string
+
+WHILE itirator < lengnth of strings
+  Add current string to new string
+  itirator = itirator + 1
+
+PRINT new string
+
+END
+
+
+START
+
+# Given an array of integers called "numbers"
+
+SET itirator = 1
+SET new empty array
+
+WHILE itirator < length of numbers
+  Add value to new array
+PRINT new array 
+
+EMD
