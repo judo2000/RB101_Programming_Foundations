@@ -1,10 +1,8 @@
-require "pry"
 require "yaml"
 MESSAGES = YAML.load_file('calculator_messages.yml')
 lang = 'en'
 
-# puts MESSAGES.inspect
-def get_language
+def retrieve_language
   prompt(messages('language', 'en'))
   gets.chomp
 end
@@ -26,6 +24,19 @@ def messages(message, lang='en')
   MESSAGES[lang][message]
 end
 
+def retrieve_name(lang)
+  prompt(messages('name', lang))
+  loop do
+    name = gets.chomp
+    if name.empty? || name.start_with?(' ')
+      prompt(messages('valid_name', lang))
+    else
+      prompt(messages('hi', lang) + " #{name}")
+      break
+    end
+  end
+end
+
 def prompt(message)
   puts "=> #{message}"
 end
@@ -34,22 +45,8 @@ def valid_number?(num)
   num.to_i.to_s == num || num.to_f.to_s == num
 end
 
-
-
 def clear_screen
   system("clear") || system("cls")
-end
-
-clear_screen
-lang = ''
-loop do
-  language = get_language
-  if valid_language?(language)
-    lang = lang_to_message(language)
-    break
-  else 
-    prompt(messages('lang_error'))
-  end
 end
 
 def operation_to_message(op, lang)
@@ -64,20 +61,21 @@ def operation_to_message(op, lang)
     messages('divide', lang)
   end
 end
-prompt(messages('welcome', lang))
 
-name = ''
+clear_screen
+lang = ''
 loop do
-  name = gets.chomp
-
-  if name.empty?
-    prompt(messages('valid_name', lang))
-  else
+  language = retrieve_language
+  if valid_language?(language)
+    lang = lang_to_message(language)
     break
+  else
+    prompt(messages('lang_error'))
   end
 end
 
-prompt(messages('hi', lang) + "  #{name}")
+prompt(messages('welcome', lang))
+retrieve_name(lang)
 
 loop do
   number1 = ''
@@ -103,7 +101,6 @@ loop do
     end
   end
 
- 
   prompt(messages('operator_prompt', lang))
 
   operator = ''
@@ -116,24 +113,22 @@ loop do
       prompt(messages('operator_error', lang))
     end
   end
-
   prompt("#{operation_to_message(operator, lang)} the two numbers...")
 
   result = case operator
-           when '1'
-             number1.to_f + number2.to_f
-           when '2'
-             number1.to_f - number2.to_f
-           when '3'
-             number1.to_f * number2.to_f
-           when '4'
-             number1.to_f / number2.to_f
-           end
+          when '1'
+            number1.to_f + number2.to_f
+          when '2'
+            number1.to_f - number2.to_f
+          when '3'
+            number1.to_f * number2.to_f
+          when '4'
+            number1.to_f / number2.to_f
+          end
   prompt(messages('result', lang) + " #{result}")
-
   prompt(messages('another_calculation', lang))
   answer = gets.chomp
   break unless answer.downcase().start_with?('y')
   clear_screen
+  prompt(messages('good_bye', lang))
 end
-prompt(messages('good_bye', lang))
