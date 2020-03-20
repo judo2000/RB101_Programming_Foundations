@@ -19,8 +19,10 @@ en:
   subtract: "Subtracting"
   multiply: "Multipling"
   divide: "Dividing"
+  zero_division: "You cannot divide by 0"
   result: "The result is" 
-  another_calculation: "Do you want to perform another calculation? (Y to calculate again)"
+  continue: "Do you want to perform another calculation? (Y/N)"
+  continue_error: "Please enter Y Or N"
   good_bye: "Thank you for using the calculator.  Good bye!"
 es:
   welcome: "Bienvenido a la calculadora!"
@@ -35,12 +37,13 @@ es:
       1) añadir 
       2) sustraer 
       3) multiplicar 
-      4) dividir 
-  operator_error: "Debe elegir 1, 2, 3, de 4"
+      4) dcontinue_error: "Please enter Y Or N"_error: "Debe elegir 1, 2, 3, de 4"
   add: "Agregando"
   subtract: "Restando"
   multiply: "Multiplicando"
   divide: "Divisor"
+  zero_division: "No puedes dividir por 0"
   result: "El resultado es" 
-  another_calculation: "¿Quieres realizar otro cálculo? (Y para calcular de nuevo)"
-  good_bye: "Gracias por usar la calculadora. ¡Adiós!"
+  continue: "¿Quieres realizar otro cálculo? (Y/N)"
+  continue_error: "Por favor ingrese S o N"
+  good_bye: another_calculation"Gracias por usar la calculadora. ¡Adiós!"
