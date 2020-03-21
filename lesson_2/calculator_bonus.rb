@@ -96,6 +96,7 @@ def continue(lang)
       prompt(messages('continue_error'))
     end
   end
+  return answer
 end
 
 clear_screen
@@ -152,11 +153,10 @@ loop do
   end
 
   calculate_result(operator, number1, number2, lang)
-
   if continue(lang) == "y"
     clear_screen
   else
-    prompt(messages('good_bye', lang))
     break
   end
 end
+prompt(messages('good_bye', lang))
