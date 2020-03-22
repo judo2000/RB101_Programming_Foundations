@@ -1,0 +1,15 @@
+welcome: "Welcome to Loan Calculator!"
+dash_line: "---------------------------"
+loan_amount: "What is the loan amount?"
+loan_amount_error: "Loan amount must be a positive number."
+interest_rate: >
+  What is the interest rate?
+    (Example: 5 for 5% or 2.5 for 2.5%)
+interest_rate_error: "Must be a positive number."
+loan_duration: "What is the loan duration (in years)?"
+loan_duration_error: "Enter a valid number."
+payment: "Your monthly payment is: "
+continue: "Would you like to do another Calculation?"
+continue_error: "Please enter Y Or N"
+thank_you: "Thank you for using the Loan Calculator!"
+good_bye: "Good Bye!"
