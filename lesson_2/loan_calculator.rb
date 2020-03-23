@@ -9,7 +9,7 @@ def messages(message)
   MESSAGES[message]
 end
 
-def get_loan_amount
+def retrieve_loan_amount
   prompt(messages('loan_amount'))
 
   amount = ''
@@ -22,26 +22,26 @@ def get_loan_amount
       break
     end
   end
-  return amount
+  amount
 end
 
-def get_interest_rate
+def retrieve_interest_rate
   prompt(messages('interest_rate'))
 
   interest_rate = ''
   loop do
     interest_rate = gets.chomp
 
-    if interest_rate.empty? || interest_rate.to_f <= 0 
+    if interest_rate.empty? || interest_rate.to_f <= 0
       prompt(messages('interest_rate_error'))
     else
       break
     end
   end
-  return interest_rate
+  interest_rate
 end
 
-def get_loan_duration
+def retrieve_loan_duration
   prompt(messages('loan_duration'))
 
   years = ''
@@ -54,17 +54,17 @@ def get_loan_duration
       break
     end
   end
-  return years
+  years
 end
 
-def get_monthly_payment(amount, interest_rate, years)
+def retrieve_monthly_payment(amount, interest_rate, years)
   annual_interest_rate = interest_rate.to_f / 100
   monthly_interest_rate = annual_interest_rate / 12
   months = years.to_i * 12
 
-  monthly_payment = amount.to_f *
-                    (monthly_interest_rate /
-                    (1 - (1 + monthly_interest_rate)**(-months)))
+  amount.to_f *
+    (monthly_interest_rate /
+    (1 - (1 + monthly_interest_rate)**(-months)))
 end
 
 def clear_screen
@@ -82,7 +82,7 @@ def continue
       prompt(messages('continue_error'))
     end
   end
-  return answer
+  answer
 end
 
 clear_screen
@@ -90,13 +90,12 @@ loop do
   prompt(messages('welcome'))
   prompt(messages('dash_line'))
 
-  amount = get_loan_amount
-  puts amount
-  interest_rate = get_interest_rate
-  
-  years = get_loan_duration
+  amount = retrieve_loan_amount
+  interest_rate = retrieve_interest_rate
 
-  monthly_payment = get_monthly_payment(amount, interest_rate, years)
+  years = retrieve_loan_duration
+
+  monthly_payment = retrieve_monthly_payment(amount, interest_rate, years)
 
   prompt("Your monthly payment is: $#{format('%02.2f', monthly_payment)}")
 
