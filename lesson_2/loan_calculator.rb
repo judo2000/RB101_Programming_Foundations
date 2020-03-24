@@ -57,29 +57,29 @@ def retrieve_loan_duration
   years
 end
 
-def retrieve_monthly_payment(amount, interest_rate, years)
+def calculate_monthly_payment(amount, interest_rate, years)
   annual_interest_rate = interest_rate.to_f / 100
   monthly_interest_rate = annual_interest_rate / 12
   months = years.to_i * 12
 
-  amount.to_f *
+  format('%02.2f', amount.to_f *
     (monthly_interest_rate /
-    (1 - (1 + monthly_interest_rate)**(-months)))
+    (1 - (1 + monthly_interest_rate)**(-months))))
 end
 
 def clear_screen
   system("clear") || system("cls")
 end
 
-def continue
+def calculate_again?
   answer = ''
   loop do
-    prompt(messages('continue'))
+    prompt(messages('calculate_again'))
     answer = gets.chomp.downcase()
     if answer == "y" || answer == "n"
       break
     else
-      prompt(messages('continue_error'))
+      prompt(messages('calculate_again_error'))
     end
   end
   answer
@@ -95,11 +95,10 @@ loop do
 
   years = retrieve_loan_duration
 
-  monthly_payment = retrieve_monthly_payment(amount, interest_rate, years)
+  monthly_payment = calculate_monthly_payment(amount, interest_rate, years)
 
-  prompt("Your monthly payment is: $#{format('%02.2f', monthly_payment)}")
-
-  if continue == "y"
+  prompt("Your monthly payment is: $#{monthly_payment}")
+  if calculate_again? == "y"
     clear_screen
   else
     break
