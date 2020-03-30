@@ -1,0 +1,26 @@
+welcome: Welcome Rock, Paper, Scissors, Lizard, Spock!
+instructions: >
+  Just like the classic Rock, Paper, Scissors...
+  but with a few new players, Lizard, and Spock
+
+    - Scissors cuts Paper
+    - Paper covers Rock
+    - Rock crushes Lizard
+    - Lizard poisons Spock
+    - Spock smashes Scissors
+    - Scissors decapitates Lizard
+    - Lizard eats Paper
+    - Paper disproves Spock
+    - Spock vaporizes Rock
+    - Rock crushes Scissors
+choice: Chose One
+  r = rock
+  p = paper
+  sc = scissors
+  l = lizard
+  sp = spock
+choice_error: That's not a valid choice.
+play_again: Do you want to play again?
+play_again_error: Please enter Y Or N
+thank_you: Thank you for playing Rock Paper Scissors Lizard Spock!"
+good_bye: "Good Bye!"
