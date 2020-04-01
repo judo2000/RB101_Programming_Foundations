@@ -13,6 +13,8 @@ instructions: >
     - Paper disproves Spock
     - Spock vaporizes Rock
     - Rock crushes Scissors
+start_tame: Pres emter to start game...
+first_to_five: This is a race, first one to 5 wins!
 choice: Chose One
   r = rock
   p = paper

@@ -21,9 +21,13 @@ def messages(message)
   MESSAGES[message]
 end
 
+def initialize_score
+  { "User" => 0, "Computer" => 0 }
+end
+
 def display_game_score(game_score)
   puts "Game Score:"
-    game_score.each { |player, score| puts "#{player}: #{score}" }
+  game_score.each { |player, score| puts "#{player}: #{score}" }
 end
 
 def retreive_choice
@@ -59,7 +63,8 @@ end
 
 def display_results(user_choice, computer_choice)
   puts "You chose: #{user_choice.capitalize}"
-    puts "Computer chose: #{computer_choice.capitalize}"
+  puts "Computer chose: #{computer_choice.capitalize}"
+
   if RPLS_RULES[(user_choice.to_sym)].include?(computer_choice)
     puts "You won!"
   elsif RPLS_RULES[(computer_choice.to_sym)].include?(user_choice)
@@ -112,27 +117,37 @@ def play_again?
 end
 
 clear_screen
+
 prompt(messages('welcome'))
 puts
+
 prompt(messages('instructions'))
 puts
-prompt("Pres emter to start game...")
+
+prompt(messages('start_game'))
 gets
+
 loop do
   clear_screen
 
-  game_score = { "User" => 0, "Computer" => 0 }
+  prompt(messages('first_to_five'))
+
+  game_score = initialize_score
   loop do
     display_game_score(game_score)
     user_choice = retreive_choice
     computer_choice = COMPUTER_CHOICES.sample
-    
+
+    clear_screen
+
     display_results(user_choice, computer_choice)
     update_results(game_score, user_choice, computer_choice)
 
     break if game_score.value?(5)
   end
+
   clear_screen
+
   display_final_score(game_score)
   display_winner(game_score)
 
@@ -142,5 +157,6 @@ loop do
     break
   end
 end
+
 prompt(messages('thank_you'))
 prompt(messages('good_bye'))
